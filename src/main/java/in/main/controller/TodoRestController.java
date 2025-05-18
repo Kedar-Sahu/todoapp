@@ -1,5 +1,7 @@
 package in.main.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +23,12 @@ public class TodoRestController {
 
 	@Autowired
 	private TodoService todoService;
-	
+
+	private Logger logger= LoggerFactory.getLogger(TodoRestController.class);
 	
 	@PostMapping("/save")
 	public ResponseEntity<?> save(@RequestBody Todo todo){
-		
+		logger.info("save todo success");
 		return new ResponseEntity<>(todoService.saveTodo(todo),HttpStatus.CREATED);
 	}
 	
